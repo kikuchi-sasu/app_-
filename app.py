@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.patches import FancyBboxPatch, Circle, Polygon
 import math
+import matplotlib_fontja
+
 
 # ページ設定
 st.set_page_config(
@@ -415,31 +417,31 @@ ax.add_patch(product_shape)
 # 接触点をマーク
 ax.plot(spacer_top_x, spacer_top_y, 'o', color='#E91E63', markersize=10, zorder=25)
 ax.plot(roof_touch_x, roof_touch_y, 'o', color='#FF5722', markersize=12, zorder=25)
-ax.text(roof_touch_x + 0.15, roof_touch_y + 0.1, 'Roof Carrier', fontsize=10, color='#FF5722', fontweight='bold')
+ax.text(roof_touch_x + 0.15, roof_touch_y + 0.1, 'ルーフキャリア', fontsize=10, color='#FF5722', fontweight='bold')
 
 # 製品ラベル
 mid_x = spacer_top_x + L_prod_m * cos_t / 2 + normal_x / 2
 mid_y = spacer_top_y + L_prod_m * sin_t / 2 + normal_y / 2
-ax.text(mid_x, mid_y + 0.3, f'Product {L_prod}mm',
+ax.text(mid_x, mid_y + 0.3, f'製品 {L_prod}mm',
         fontsize=12, fontweight='bold', color=prod_color,
         ha='center', va='bottom',
         bbox=dict(boxstyle='round,pad=0.3', facecolor='white', edgecolor=prod_color, alpha=0.9))
 
 # 許容高さ（点線）
 ax.axhline(y=H_max * scale, color='#F44336', linestyle='--', linewidth=2, alpha=0.8)
-ax.text(0.3, H_max * scale + 0.05, f'Max Height {H_max}mm', fontsize=10, color='#F44336', fontweight='bold')
+ax.text(0.3, H_max * scale + 0.05, f'許容高さ {H_max}mm', fontsize=10, color='#F44336', fontweight='bold')
 
 # 許容横幅（縦点線）
 ax.axvline(x=W_max * scale, color='#FF9800', linestyle='--', linewidth=2, alpha=0.8)
-ax.text(W_max * scale + 0.05, bed_h + 0.5, f'Max Width {W_max}mm', fontsize=10, color='#FF9800', fontweight='bold', rotation=90)
+ax.text(W_max * scale + 0.05, bed_h + 0.5, f'許容横幅 {W_max}mm', fontsize=10, color='#FF9800', fontweight='bold', rotation=90)
 
 # グラフ設定
 ax.set_xlim(-1.5, max(bed_len + 3, W_max * scale + 0.5))
 ax.set_ylim(-0.5, max(H_max * scale + 0.5, results['product_top_height'] * scale + 0.3))
 ax.set_aspect('equal')
-ax.set_xlabel('Width (m)', fontsize=12, fontweight='bold')
-ax.set_ylabel('Height (m)', fontsize=12, fontweight='bold')
-ax.set_title('Truck Loading Side View', fontsize=18, fontweight='bold', pad=20)
+ax.set_xlabel('横方向 (m)', fontsize=12, fontweight='bold')
+ax.set_ylabel('高さ (m)', fontsize=12, fontweight='bold')
+ax.set_title('トラック積載イメージ図', fontsize=18, fontweight='bold', pad=20)
 ax.grid(True, alpha=0.3, linestyle='--')
 
 
